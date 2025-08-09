@@ -21,7 +21,7 @@ A basic Django web application demonstrating form handling, template usage, and 
 
 1. Clone the repository:
     ```powershell
-    git clone https://github.com/yourusername/Project1.git
+    git clone https://github.com/shafetullah032/Project1.git
     cd Project1
     ```
 
@@ -73,7 +73,7 @@ This project is licensed under the MIT License.
 
 ## Author
 
-MD. Safaet Ullah
-BSc in CSE(SUST)
-Lecturer 
+MD. Safaet Ullah<br>
+BSc in CSE(SUST)<br>
+Lecturer<br>
 RPSU
