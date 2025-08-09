@@ -1,0 +1,17 @@
+{% extends  "base.html" %}
+
+{% block title %} {{block.super}} homepage {%endblock %}
+
+{%block content %}
+{{title}}
+<h1> This the home page. with the best degisn</h1>
+<form method="POST">{% csrf_token %} 
+{{form}}
+<button type="submit" > Send </button>
+</form>
+
+
+{%endblock %}
+
+
+
