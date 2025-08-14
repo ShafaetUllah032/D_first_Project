@@ -16,11 +16,11 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-from . import view # Importing the views from the current directory
+from django.urls import path,include
+from landing_pages import views as lp_views  # Importing the views from the current directory
 
 urlpatterns = [
-    path("", view.home_page),
-    path("random", view.random_page),
+    path("", lp_views.home_page),
+    path('entries/', include('landing_pages.urls')),
     path("admin/", admin.site.urls),
 ]
