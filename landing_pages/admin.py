@@ -4,7 +4,7 @@ from .models import LandingPageEntry
 # Register your models here.
 
 class LandingPageEntryAdmin(admin.ModelAdmin):
-    list_display=("name","email","timestamp","updated")
+    list_display=("name","email","timestamp","updated", "notes","notes_by")
     search_fields=["name", "email"]
     read_only_fields=["name","email","timestamp","updated"]
 
