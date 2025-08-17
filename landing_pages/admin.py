@@ -6,7 +6,7 @@ from .models import LandingPageEntry
 class LandingPageEntryAdmin(admin.ModelAdmin):
     list_display=("name","email","timestamp","updated", "notes","notes_by")
     search_fields=["name", "email"]
-    read_only_fields=["name","email","timestamp","updated"]
+    read_only_fields=["id","name","email","timestamp"]
 
     list_filter=["active","timestamp"]
 

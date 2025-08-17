@@ -1,6 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from .forms import LandingPageEntryModelFrom as LandingPageForm
+from django.shortcuts import render, get_object_or_404
+from .forms import LandingPageEntryModelFrom as LandingPageForm , EntryNotesModelForm
 from .models import LandingPageEntry 
 
 
@@ -43,7 +43,7 @@ def random_page(request,*args, **kwargs):
 # @user_passes_test(lambda u: u.is_staff)
 
 def landing_page_entry_list_view(request,*args, **kwargs):
-    
+     
     user=request.user
     if not user.is_authenticated:
         return HttpResponse("Yous must be logged in to view this page.",status=404)
@@ -56,7 +56,19 @@ def landing_page_entry_list_view(request,*args, **kwargs):
     }
     return render(request, "landing_pages/list.html",context)
 
+def landing_page_entry_detail_view(request,*args, **kwargs):
+     
+    user=request.user
+    if not user.is_authenticated:
+        return HttpResponse("Yous must be logged in to view this page.",status=404)
+    if not user.is_staff:
+        return HttpResponse("You are not authorized to view this page.", status=404)
 
+    obj=get_object_or_404(LandingPageEntry, id=kwargs.get("id"))
+    context={
+        "object":obj,
+    }
+    return render(request, "landing_pages/detail.html",context)
 
 def entry_list_notes_view(request,*args, **kwargs):
     

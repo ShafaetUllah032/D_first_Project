@@ -1,0 +1,14 @@
+{% extends  "base.html" %}
+
+{% block title %} Entries -  {{block.super}} {%endblock %}
+
+{%block content %}
+
+<h1> Entry - {{object.id}} </h1>
+
+<p>Email: {{object.email}}</p>
+<p>Name: {{object.name}}</p>
+<p>Timestamp: {{object.timestamp}}</p>
+
+</ul>
+{%endblock %}
