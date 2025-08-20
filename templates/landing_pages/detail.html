@@ -10,5 +10,11 @@
 <p>Name: {{object.name}}</p>
 <p>Timestamp: {{object.timestamp}}</p>
 
-</ul>
+
+<form method="POST">{% csrf_token %} 
+{{form}}
+<button type="submit" > Send </button>
+</form>
+
+
 {%endblock %}

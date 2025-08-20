@@ -1,28 +1,24 @@
-from django.http import HttpResponse
+from django.contrib import messages
+
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.utils import timezone
+
 from .forms import LandingPageEntryModelFrom as LandingPageForm , EntryNotesModelForm
 from .models import LandingPageEntry 
 
 
 
 def home_page(request,*args, **kwargs):
-
+    messages.success(request,"Hey , done good job selecting this site!")
     title="Welcome"
     form = LandingPageForm(request.POST or None)
+    did_submit = False
     if form.is_valid():
-        obj=form.save()
-        # print(form.cleaned_data)
-        # name=form.cleaned_data.get("name")
-        # email=form.cleaned_data.get("email")
-        # LandingPageEntry.objects.create(
-        #     name=name,
-        #     email=email
-        # )
-       # obj=LandingPageEntry()
-        #obj.email=email
-        # obj.save()
-        form=LandingPageForm()
-
+        form.save()
+        messages.success(request,"Thanks for visiting our site!")
+        request.session['did_submit'] = True
+        return HttpResponseRedirect("/")      
     context={
         "title": title,
         "form": form,
@@ -65,8 +61,20 @@ def landing_page_entry_detail_view(request,*args, **kwargs):
         return HttpResponse("You are not authorized to view this page.", status=404)
 
     obj=get_object_or_404(LandingPageEntry, id=kwargs.get("id"))
+
+    form =EntryNotesModelForm(request.POST or None, instance=obj)
+    if form.is_valid():
+        obj=form.save(commit=False)
+        if not obj.notes_by:
+            obj.note_first_addeed = timezone.now()
+        obj.notes_by=user
+        obj.save()
+        messages.success(request,f"Entry {obj.id} Updated successfully!", extra_tags="alert alert-success")
+        return HttpResponse(obj.get_absolute_url())
+
     context={
         "object":obj,
+        "form": form,
     }
     return render(request, "landing_pages/detail.html",context)
 

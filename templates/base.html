@@ -8,10 +8,16 @@
         </title>
 
         {%include 'base/css.html' %}
+        <style>
+            .bg-fp {
+                background-color: #f19137ff !important;
+            }
+        </style>
   </head>
   <body>
     <body>
         {%include 'base/navbar.html' %}
+        {%include 'base/messages.html' %}
 
         <div class="container-fluid">
           {% block content %}

@@ -3,15 +3,51 @@
 {% block title %} {{block.super}} homepage {%endblock %}
 
 {%block content %}
-{{title}}
-<h1> This the home page. with the best degisn</h1>
-<form method="POST">{% csrf_token %} 
-{{form}}
-<button type="submit" > Send </button>
-</form>
 
 
-{%endblock %}
+<div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+    <h1 class="display-5 fw-bold">{{title}}</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+      {% if not request.session.did_submit %}
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a type="button" href="#sign-up " class="btn btn-dark btn-lg px-4 gap-3">Sign Up</button>
+        <a type="button" href="#watch-video" class="btn btn-outline-dark btn-lg px-4 gap-3">Watch</button>
+        </a>
+      </div>
+      {% else %}
+         <p class="lead"> Thank you for signing up!</p>
+      {%endif%}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8" id="watch-video">
+        <div class="ratio ratio-16x9">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/kEEJ6otVUjw?si=6aJyS2K9erNUvSK6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
+
+
+    <div class="col-12 col-md-4" id="sign-up">
+
+            {% if not request.session.did_submit %}
+            <form method="POST">{% csrf_token %} 
+            {{form}}
+            <a type="button" href="#sign-up" class="btn btn-primary mt-3 "> Submit </button>
+            </form>
+
+            {% else %}
+            <p>Thanks for submitting the form!</p>
+            {% endif %}
+
+
+            {%endblock %}
+        </div>
+
+</div>
+
 
 
 

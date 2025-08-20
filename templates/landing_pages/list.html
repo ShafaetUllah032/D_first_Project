@@ -11,6 +11,7 @@
 <ul>
 {% for entry in object_list %}
     <li>
+        <a href="{{ entry.get_absolute_url }}">View Details
         <strong>{{ entry.name }}</strong> - {{ entry.email }} - {{ entry.timestamp }} - {{ entry.updated }} - 
         {% if entry.notes %}
             <em>Notes: {{ entry.notes }}</em> by {{ entry.notes_by }}
@@ -18,6 +19,7 @@
             <em>No notes</em>
         {% endif %}
         {% if entry.active %}Active{% else %}Inactive{% endif %}
+        </a> |
     </li>
 {% endfor %}
 </ul>

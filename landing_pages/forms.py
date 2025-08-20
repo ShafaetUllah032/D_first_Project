@@ -5,6 +5,7 @@ from .models import LandingPageEntry
 
 class EntryNotesModelForm(mixins.BootstrapFormMixin, forms.ModelForm):
     class Meta:
+        model = LandingPageEntry
         fields =["name","email","notes"]
 
 
